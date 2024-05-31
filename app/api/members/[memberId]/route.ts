@@ -12,6 +12,8 @@ export async function DELETE(
     const { searchParams } = new URL(req.url)
     const serverId = searchParams.get('serverId')
 
+    console.log('Here OK!!!')
+
     if (!profile) {
       return new NextResponse('Unauthorized', { status: 401 })
     }
