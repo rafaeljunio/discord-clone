@@ -9,6 +9,7 @@ import {
 import { Edit, Hash, Lock, Mic, Trash, Video } from 'lucide-react'
 import { useParams, useRouter } from 'next/navigation'
 
+import { useModal } from '@/hooks/use-modal-store'
 import { cn } from '@/lib/utils'
 
 import { ActionTooltip } from '../action-tooltip'
@@ -30,12 +31,14 @@ export const ServerChannel = ({
   server,
   role,
 }: ServerChannelProps) => {
+  const { onOpen } = useModal()
   const params = useParams()
   const router = useRouter()
 
   const Icon = iconMap[channel.type]
 
   return (
+    // biome-ignore lint/a11y/useButtonType: <explanation>
     <button
       onClick={() => {}}
       className={cn(
@@ -57,6 +60,7 @@ export const ServerChannel = ({
         <div className="ml-auto flex items-center gap-x-2">
           <ActionTooltip label="Edit">
             <Edit
+              onClick={() => onOpen('editChannel', { server, channel })}
               className="hidden group-hover:block w-4 h-4 text-zinc-500
             hover:text-zinc-600 dark:text-zinc-400
             dark:hover:text-zinc-300 transition"
@@ -64,6 +68,7 @@ export const ServerChannel = ({
           </ActionTooltip>
           <ActionTooltip label="Delete">
             <Trash
+              onClick={() => onOpen('deleteChannel', { server, channel })}
               className="hidden group-hover:block w-4 h-4 text-zinc-500
             hover:text-zinc-600 dark:text-zinc-400
             dark:hover:text-zinc-300 transition"
