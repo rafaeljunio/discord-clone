@@ -33,8 +33,8 @@ export const ServerSection = ({
 
       {role !== MemberRole.GUEST && sectionType === 'channels' && (
         <ActionTooltip label="Create Channel" side="top">
-          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
           <button
+            type="button"
             onClick={() => onOpen('createChannel', { channelType })}
             className="text-zinc-500 hover:text-zinc-600 dark:text-zinc-400
              dark:hover:text-zinc-300 transition"
@@ -46,8 +46,8 @@ export const ServerSection = ({
 
       {role === MemberRole.ADMIN && sectionType === 'members' && (
         <ActionTooltip label="Manage Members" side="top">
-          {/* biome-ignore lint/a11y/useButtonType: <explanation> */}
           <button
+            type="button"
             onClick={() => onOpen('members', { server })}
             className="text-zinc-500 hover:text-zinc-600 dark:text-zinc-400
              dark:hover:text-zinc-300 transition"

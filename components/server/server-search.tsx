@@ -65,6 +65,7 @@ export const ServerSearch = ({ data }: ServerSearchProps) => {
   return (
     <>
       <button
+        type="button"
         onClick={() => setOpen(true)}
         className="group px-2 py-2 rounded-md flex items-center 
       gap-x-2 w-full hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition"
