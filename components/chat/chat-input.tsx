@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -7,11 +8,14 @@ import qs from 'query-string'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { useModal } from '@/hooks/use-modal-store'
+
 import { Form, FormControl, FormField, FormItem } from '../ui/form'
 import { Input } from '../ui/input'
 
 type Props = {
   apiUrl: string
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   query: Record<string, any>
 
   name: string
@@ -23,6 +27,8 @@ const formSchema = z.object({
 })
 
 export const ChatInput = ({ apiUrl, query, name, type }: Props) => {
+  const { onOpen } = useModal()
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,7 +63,7 @@ export const ChatInput = ({ apiUrl, query, name, type }: Props) => {
                 <div className="relative p-4 pb-6">
                   <button
                     type="button"
-                    onClick={() => {}}
+                    onClick={() => onOpen('messageFile', { apiUrl, query })}
                     className="absolute top-7 left-8 h-[24px] w-[24px] bg-zinc-500 dark:bg-zinc-400 hover:bg-zinc-600
                      dark:hover:bg-zinc-300 transition rounded-full p-1 flex items-center justify-center"
                   >

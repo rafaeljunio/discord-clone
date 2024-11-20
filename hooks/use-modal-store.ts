@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Channel, ChannelType, Server } from '@prisma/client'
 import { create } from 'zustand'
 
@@ -11,11 +12,15 @@ export type ModalType =
   | 'deleteServer'
   | 'deleteChannel'
   | 'editChannel'
+  | 'messageFile'
 
 interface ModalData {
   server?: Server
   channel?: Channel
   channelType?: ChannelType
+  apiUrl?: string
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  query?: Record<string, any>
 }
 
 interface ModalStore {
