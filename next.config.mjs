@@ -1,12 +1,21 @@
+/* eslint-disable prettier/prettier */
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        hostname: 'utfs.io',
-      },
-    ],
-  },
-}
+	webpack: (config) => {
+		config.externals.push({
+			"utf-8-validate": "commonjs utf-8-validate",
+			bufferutil: "commonjs bufferutil",
+		});
 
-export default nextConfig
+		return config;
+	},
+	images: {
+		remotePatterns: [
+			{
+				hostname: "utfs.io",
+			},
+		],
+	},
+};
+
+export default nextConfig;
